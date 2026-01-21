@@ -3,7 +3,7 @@ import Hero from './Hero'
 import Programs from './Programs'
 import Searchpage from './Searchpage'
 
-function App() {
+function Home() {
 
   return (
     <>
@@ -14,4 +14,4 @@ function App() {
   )
 }
 
-export default App
+export default Home
