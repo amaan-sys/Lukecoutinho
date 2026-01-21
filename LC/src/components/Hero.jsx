@@ -1,103 +1,129 @@
-import React from 'react';
-import { Play, Calendar, ArrowRight, ShieldCheck, Star, Users } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Play, Calendar, CheckCircle2 } from 'lucide-react';
+import heroimg from '../assets/neimg.jpg';
 
 const Hero = () => {
-  return (
-    <div className="relative bg-white overflow-hidden">
-      {/* Background Decorative Elements */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none">
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[60%] bg-orange-50 rounded-full blur-3xl opacity-50" />
-        <div className="absolute bottom-[10%] right-[-5%] w-[30%] h-[50%] bg-blue-50 rounded-full blur-3xl opacity-50" />
-      </div>
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const words = ["grow", "heal", "thrive"];
 
-      <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 pt-16 pb-20 lg:pt-5 lg:pb-12 relative z-10">
-        <div className="flex flex-col lg:flex-row items-center gap-16">
-          
-          {/* Left Content */}
-          <div className="flex-1 text-center lg:text-left">
-            <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-orange-50 border border-orange-100 mb-6">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
-              </span>
-              <span className="text-xs font-bold uppercase tracking-wider text-orange-600">
-                Transforming Lives Globally
-              </span>
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentWordIndex((prev) => (prev + 1) % words.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="relative bg-[#FFFEFC] min-h-[95vh] flex items-center overflow-hidden font-sans">
+      {/* Premium Background Elements */}
+      <div className="absolute top-0 left-0 w-[60%] h-full bg-slate-50 opacity-40 skew-x-[15deg] -translate-x-32 pointer-events-none transition-all duration-1000" />
+      <div className="absolute top-[-10%] right-[-5%] w-[400px] h-[400px] bg-orange-100/20 rounded-full blur-[120px] animate-pulse" />
+      <div className="absolute bottom-[-10%] left-[-5%] w-[300px] h-[300px] bg-blue-50/30 rounded-full blur-[100px]" />
+
+      <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-16 w-full pt-24 lg:pt-10 relative z-10">
+        <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+
+          {/* Left Content: Dynamic & Impactful */}
+          <div className="flex-1 text-center lg:text-left order-1">
+            <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-slate-50 border border-slate-200/60 mb-10 transition-all hover:border-orange-200 hover:bg-orange-50/30 group">
+              <span className="flex h-2.5 w-2.5 rounded-full bg-orange-500 shadow-[0_0_10px_rgba(249,115,22,0.5)] group-hover:animate-ping" />
+              <span className="text-[11px] font-black uppercase tracking-[0.25em] text-slate-700">Holistic Integrative Medicine</span>
             </div>
 
-            <h1 className="text-5xl md:text-7xl font-extrabold text-slate-900 leading-[1.1] mb-8">
+            <h1 className="text-6xl md:text-8xl xl:text-9xl font-black text-slate-950 leading-[0.95] tracking-tighter mb-10">
               We help <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-600">
-                you thrive
+              you <span className="relative inline-block lg:min-w-[280px]">
+                <span key={currentWordIndex} className="animate-in fade-in slide-in-from-bottom-8 duration-700 block text-orange-500 drop-shadow-sm">
+                  {words[currentWordIndex]}
+                </span>
+                <div className="absolute bottom-4 left-0 w-full h-4 bg-orange-200/30 -z-10 rounded-full blur-[2px]" />
               </span>
             </h1>
 
-            <p className="text-lg md:text-xl text-slate-600 leading-relaxed mb-10 max-w-2xl mx-auto lg:mx-0">
-              Our holistic approach goes beyond the ordinary to empower individuals to reshape their lifestyles through science-backed integrative medicine.
+            <p className="text-xl md:text-2xl text-slate-600 leading-snug max-w-xl mb-14 mx-auto lg:mx-0 font-medium tracking-tight">
+              Our holistic approach goes beyond the<span className="text-slate-900 font-bold underline decoration-orange-300 underline-offset-4"> ordinary to empower </span>individuals to reshape their lifestyles.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-              <button className="w-full sm:w-auto px-8 py-4 bg-orange-500 text-white font-bold rounded-2xl shadow-xl shadow-orange-200 hover:bg-orange-600 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-2">
-                <Calendar size={20} />
-                Book a Consult
+            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-8 mb-20">
+              <button className="w-full sm:w-auto px-12 py-6 bg-slate-950 text-white font-black rounded-3xl shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] hover:bg-orange-600 hover:scale-[1.02] transition-all duration-500 uppercase tracking-widest text-sm flex items-center justify-center gap-4 group active:scale-95">
+                <Calendar size={18} className="group-hover:rotate-12 transition-transform" />
+                Book Your Consult
               </button>
-              
-              <button className="w-full sm:w-auto px-8 py-4 bg-white text-slate-800 font-bold rounded-2xl border-2 border-slate-100 hover:border-orange-200 hover:text-orange-600 transition-all duration-300 flex items-center justify-center gap-2 group">
-                <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center group-hover:bg-orange-100 transition-colors">
-                  <Play size={14} className="fill-slate-800 group-hover:fill-orange-600 ml-0.5" />
+
+              <button className="w-full sm:w-auto group flex items-center justify-center gap-5 px-6 py-4 bg-transparent text-slate-900 font-black transition-all duration-300">
+                <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-xl group-hover:bg-orange-500 group-hover:text-white transition-all transform group-hover:scale-110">
+                  <Play size={22} fill="currentColor" className="ml-1" />
                 </div>
-                Watch More
+                <div className="text-left">
+                  <p className="text-[10px] text-slate-400 uppercase tracking-widest leading-none mb-1">Watch Video</p>
+                  <span className="text-xs uppercase tracking-[0.2em] font-black">Luke's Approach</span>
+                </div>
               </button>
             </div>
 
-            {/* Trust Badges */}
-            <div className="mt-12 pt-8 border-t border-slate-100 flex flex-wrap justify-center lg:justify-start gap-8 opacity-70">
-              <div className="flex items-center gap-2">
-                <Users size={18} className="text-slate-400" />
-                <span className="text-sm font-semibold text-slate-500">10k+ Happy Clients</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Star size={18} className="text-orange-400 fill-orange-400" />
-                <span className="text-sm font-semibold text-slate-500">4.9/5 Rating</span>
+            {/* Premium Trust Section */}
+            <div className="pt-10 border-t border-slate-100">
+              <div className="flex flex-wrap justify-center lg:justify-start items-center gap-10 md:gap-16 opacity-30 grayscale hover:grayscale-0 transition-opacity duration-500 cursor-default">
+                <div className="text-2xl font-black tracking-tighter text-slate-900">FORBES</div>
+                <div className="text-2xl font-serif font-black text-slate-900 italic tracking-tight">VOGUE</div>
+                <div className="text-2xl font-bold tracking-tight text-slate-900">TED<span className="text-orange-600 italic font-black">x</span></div>
+                <div className="text-2xl font-black text-slate-900 uppercase tracking-[0.2em]">GQ</div>
               </div>
             </div>
           </div>
 
-          {/* Right Visual Element */}
-          <div className="flex-1 relative w-full max-w-xl">
-            <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl transform hover:scale-[1.02] transition-transform duration-500">
-              <img 
-                src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=800" 
-                alt="Lifestyle Medicine" 
-                className="w-full h-[500px] object-cover"
+          {/* Right Visual: The "Wow" Portrait */}
+          <div className="flex-1 relative w-full lg:min-h-[750px] order-2 perspective-1000">
+            <div className="relative h-full w-full rounded-[4rem] overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.15)] group">
+              <img
+                src={heroimg}
+                alt="Luke Coutinho"
+                className="w-full h-full object-cover object-top filter contrast-[1.02] brightness-[1.01] transition-transform duration-1000 group-hover:scale-110"
               />
-              {/* Overlay Gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent" />
-              
-              {/* Floating Medicine Badge */}
-              <div className="absolute bottom-8 left-8 right-8 bg-white/90 backdrop-blur-md p-5 rounded-2xl flex items-center gap-4 border border-white/50 shadow-xl animate-bounce-slow">
-                <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center text-orange-600">
-                  <ShieldCheck size={24} />
+
+              {/* Artistic Light & Shadow Overlays Adjusted for Right side */}
+              <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-white via-white/50 to-transparent lg:hidden" />
+              <div className="absolute left-0 inset-y-0 w-1/2 bg-gradient-to-r from-[#FFFEFC] via-[#FFFEFC]/30 to-transparent hidden lg:block" />
+
+              {/* Floating Verification Badge */}
+              <div className="absolute top-10 left-10 p-4 bg-white/80 backdrop-blur-md rounded-2xl shadow-xl border border-white/40 animate-float">
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center text-white">
+                    <CheckCircle2 size={18} />
+                  </div>
+                  <span className="text-[10px] font-black uppercase tracking-widest text-slate-800">Verified Professional</span>
                 </div>
-                <div>
-                  <p className="text-xs font-bold text-orange-600 uppercase tracking-tighter">Certified Care</p>
-                  <p className="text-sm font-bold text-slate-800">Integrative & Lifestyle Medicine</p>
+              </div>
+
+              {/* Stats Overlay Bottom */}
+              <div className="absolute bottom-12 right-12 p-8 bg-white/95 backdrop-blur-2xl rounded-[2.5rem] shadow-2xl space-y-2 border border-white/50 transform transition-transform group-hover:-translate-y-2">
+                <div className="flex -space-x-3 mb-4">
+                  {[1, 2, 3, 4].map(i => (
+                    <div key={i} className="w-10 h-10 rounded-full border-2 border-white overflow-hidden bg-slate-200">
+                      <img src={`https://i.pravatar.cc/100?img=${i + 20}`} alt="client" />
+                    </div>
+                  ))}
+                  <div className="w-10 h-10 rounded-full border-2 border-white bg-orange-500 flex items-center justify-center text-[10px] text-white font-bold">
+                    +10k
+                  </div>
                 </div>
+                <p className="text-sm font-black text-slate-900 leading-tight tracking-tight text-right">Community Trust</p>
+                <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest text-right">Global Reach</p>
               </div>
             </div>
 
-            {/* Decorative Dots */}
-            <div className="absolute -top-6 -right-6 w-24 h-24 grid grid-cols-4 gap-2 opacity-20">
-              {[...Array(16)].map((_, i) => (
-                <div key={i} className="w-1.5 h-1.5 bg-orange-600 rounded-full" />
-              ))}
-            </div>
+            {/* Abstract Decorative Shapes */}
+            <div className="absolute -top-10 -right-10 w-64 h-64 bg-orange-50 rounded-full blur-[80px] -z-10" />
+            <div className="absolute -bottom-10 -left-10 w-48 h-48 bg-blue-50 rounded-full blur-[70px] -z-10" />
           </div>
 
         </div>
       </div>
-      
-      
+
+      {/* Background Text Element Swapped to Left */}
+      <div className="absolute -left-20 top-1/2 -translate-y-1/2 -rotate-90 pointer-events-none select-none opacity-60">
+        <span className="text-[12rem] font-black text-slate-100/40 uppercase tracking-[0.1em]">LIFESTYLE</span>
+      </div>
     </div>
   );
 };

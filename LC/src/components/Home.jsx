@@ -9,7 +9,7 @@ import Pillars from './Pillars'
 import Explorecourse from './Explorecourse'
 // import CorporateWellnessPrograms from './CorporateWellnessPrograms'
 
-function App() {
+function Home() {
 
   return (
     <>
@@ -26,4 +26,4 @@ function App() {
   )
 }
 
-export default App
+export default Home
